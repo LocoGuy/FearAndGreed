@@ -1,29 +1,63 @@
 <html>
   <head>
     <title></title>
-    <meta content="">
+    <meta content="" />
     <style></style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+
   </head>
   <body>
-
-    <button style="height: 50px; width: 150px;" onclick="Baba()">Test</button>
-
+    <button style="height: 50px; width: 150px" onclick="fetchData('https://production.dataviz.cnn.io/index/fearandgreed/graphdata')">Test</button>
   </body>
 
   <script>
-    async function Baba(){
-      const apiUrl = "www.google.ch";
-      let response = await fetch(apiUrl);
-         if (response.ok)
-         {
-              let json = await response.json();
-              return json;
-          } 
-          else 
-          {
-              alert("HTTP-Error: " + response.status);
-          }
-          return "";
+
+function fetchData(){
+  
+  fetch(url, {
+        credentials: "include",
+        method: "GET",
+        headers: {
+          Accept: "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
+          "User-Agent": "Chrome/114.0.0.0",
+          "User-Agent": "any-name",
+        }})
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => {
+          const decompressed = pako.inflate(new Uint8Array(arrayBuffer), { to: 'string' });
+          console.log(decompressed);
+        })
+        .catch(err => console.error(err));
+
+}
+
+
+    async function Baba() {
+      const apiUrl = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata";
+      let response = await fetch(apiUrl, {
+        credentials: "include",
+        method: "GET",
+        headers: {
+          Accept: "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
+          "User-Agent": "Chrome/114.0.0.0",
+          "User-Agent": "any-name",
+        },
+      });
+
+      if (response.ok) {
+        let json = await response.json();
+        
+        console.log("json.fear_and_greed", json.fear_and_greed);
+        var score = json.fear_and_greed.score;
+        var rating = json.fear_and_greed.rating;
+
+        return {score, rating};
+      } else {
+        alert("HTTP-Error: " + response.status);
+      }
+      return "";
     }
   </script>
 </html>
