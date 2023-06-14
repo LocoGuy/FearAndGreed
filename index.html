@@ -17,10 +17,8 @@ function fetchData(url){
   fetch(url, {
         method: "GET",
         headers: {
-          //Accept: "*/*",
           "Accept-Encoding": "gzip, deflate, br",
           "User-Agent": "Chrome/114.0.0.0",
-          "User-Agent": "any-name",
         }})
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
@@ -39,7 +37,6 @@ function fetchData(url){
         headers: {
           "Accept-Encoding": "gzip, deflate, br",
           "User-Agent": "Chrome/114.0.0.0",
-          "User-Agent": "any-name",
         },
       });
 
