@@ -15,10 +15,9 @@
 function fetchData(url){
   
   fetch(url, {
-        credentials: "include",
         method: "GET",
         headers: {
-          Accept: "*/*",
+          //Accept: "*/*",
           "Accept-Encoding": "gzip, deflate, br",
           "User-Agent": "Chrome/114.0.0.0",
           "User-Agent": "any-name",
@@ -36,10 +35,8 @@ function fetchData(url){
     async function Baba() {
       const apiUrl = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata";
       let response = await fetch(apiUrl, {
-        credentials: "include",
         method: "GET",
         headers: {
-          Accept: "*/*",
           "Accept-Encoding": "gzip, deflate, br",
           "User-Agent": "Chrome/114.0.0.0",
           "User-Agent": "any-name",
