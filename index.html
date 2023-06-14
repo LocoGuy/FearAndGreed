@@ -1,3 +1,29 @@
 <html>
-  <p>Hello</p>
+  <head>
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body>
+
+    <button style="height: 50px; width: 150px;" onclick="Baba()">Test</button>
+
+  </body>
+
+  <script>
+    async function Baba(){
+      const apiUrl = "www.google.ch";
+      let response = await fetch(apiUrl);
+         if (response.ok)
+         {
+              let json = await response.json();
+              return json;
+          } 
+          else 
+          {
+              alert("HTTP-Error: " + response.status);
+          }
+          return "";
+    }
+  </script>
 </html>
